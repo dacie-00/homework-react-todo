@@ -1,5 +1,6 @@
 import {useEffect, useState} from "react";
 import {TodoItemList} from "./components/todoItemList/TodoItemList.tsx";
+import {TodoItem} from "@/components/todoItemList/TodoItem.tsx";
 
 
 function App() {
@@ -23,8 +24,9 @@ function App() {
 
     return (
     <>
-        {/*{todoItems && todoItems.map((item, index) => (<div key={index}>{item.task}</div>))}*/}
-        {todoItems && <TodoItemList items={todoItems} />}
+        <div className={"m-auto w-1/2"}>
+            {todoItems && <TodoItemList items={todoItems}/>}
+        </div>
     </>
     )
 }
