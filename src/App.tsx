@@ -1,11 +1,6 @@
 import {useEffect, useState} from "react";
+import {TodoItemList} from "./components/todoItemList/TodoItemList.tsx";
 
-type TodoItem = {
-    name: string,
-    comment: string,
-    due_date: string,
-    completed_at: string,
-}
 
 function App() {
     async function getData() {
@@ -28,7 +23,8 @@ function App() {
 
     return (
     <>
-        {todoItems && todoItems.map((item, index) => (<div key={index}>{item.name}</div>))}
+        {/*{todoItems && todoItems.map((item, index) => (<div key={index}>{item.task}</div>))}*/}
+        {todoItems && <TodoItemList items={todoItems} />}
     </>
     )
 }
