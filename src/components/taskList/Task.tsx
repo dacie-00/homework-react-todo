@@ -68,44 +68,66 @@ export function Task({task, onCheck, onDelete, onUpdate}: TaskProps) {
         <Fragment>
             <Card>
                 <CardHeader>
-                    <CardTitle>{currentTask.title}</CardTitle>
+                    <CardTitle>
+                        <div className={"flex justify-between"}>
+                            {currentTask.title}
+                            <div className={"text-sm font-light text-right"}>
+                                <p>{currentTask.due_date ? 'Due at ' + currentTask.due_date : 'No due date'}</p>
+                                <p>{currentTask.completed_at ? 'Completed at ' + new Date(currentTask.completed_at).toDateString() : ''}</p>
+                            </div>
+                        </div>
+                    </CardTitle>
                     <CardDescription>{currentTask.comment || 'No description'}</CardDescription>
                 </CardHeader>
                 <CardContent>
-                    <p>{currentTask.due_date ? 'Due at ' + currentTask.due_date : 'No due date'}</p>
-                    <p>{currentTask.completed_at ? 'Completed at ' + currentTask.completed_at : ''}</p>
-                    <Checkbox defaultChecked={currentTask.completed_at > 0} onCheckedChange={onCheckedChange}
-                              id={"checkbox-completed-" + id}></Checkbox>
-                    <label htmlFor={"checkbox-completed-" + id}>
-                        Completed
-                    </label>
+                    <div className={"flex items-center space-x-2 "}>
+                        <Checkbox defaultChecked={currentTask.completed_at > 0} onCheckedChange={onCheckedChange}
+                                  id={"checkbox-completed-" + id}></Checkbox>
+                        <label htmlFor={"checkbox-completed-" + id}>
+                            Done
+                        </label>
+                    </div>
                     {edit ? (
                         <>
-                            <div className="grid w-full max-w-sm items-center gap-1.5">
-                                <Label htmlFor={`title-${id}`}>Title</Label>
-                                <Input id={`title-${id}`} type={"text"} name={'title'} value={currentTask.title}
-                                       onChange={updateProperty}/>
+                            <div className={"space-y-4 bg-gray-100 w-fit p-8"}>
+                                <div className="grid w-full max-w-md items-center gap-1.5">
+                                    <Label htmlFor={`title-${id}`}>Title</Label>
+                                    <Input id={`title-${id}`} type={"text"} name={'title'} value={currentTask.title}
+                                           onChange={updateProperty}/>
+                                </div>
+                                <div className="grid w-full max-w-md items-center gap-1.5">
+                                    <Label htmlFor={`comment-${id}`}>Comment</Label>
+                                    <Input id={`comment-${id}`} type={"text"} name={'comment'}
+                                           value={currentTask.comment}
+                                           onChange={updateProperty}/>
+                                </div>
+                                <div className="grid w-full max-w-md items-center gap-1.5">
+                                    <Label htmlFor={`due_date-${id}`}>Due date</Label>
+                                    <Calendar id={`due_date-${id}`} mode={"single"} selected={currentTask.due_date} name={'due_date'}
+                                              onSelect={updateDueDate}/>
+                                </div>
+                                <div className={"flex justify-between"}>
+                                    <Button className={"bg-red-500"} onClick={cancelUpdate}
+                                            type="button">Cancel</Button>
+                                    <Button className={"w-md"} onClick={handleUpdate} type="button">Save</Button>
+                                </div>
                             </div>
-                            <div className="grid w-full max-w-sm items-center gap-1.5">
-                                <Label htmlFor={`comment-${id}`}>Comment</Label>
-                                <Input id={`comment-${id}`} type={"text"} name={'comment'} value={currentTask.comment}
-                                       onChange={updateProperty}/>
-                            </div>
-                            <div className="grid w-full max-w-sm items-center gap-1.5">
-                                <Calendar mode={"single"} selected={currentTask.due_date} name={'due_date'} onSelect={updateDueDate}/>
-                            </div>
-                            <Button onClick={handleUpdate} type="button">Submit changes</Button>
-                            <Button onClick={cancelUpdate} type="button">Cancel changes</Button>
                         </>
                     ) : (
-                        <Button onClick={() => setEdit(!edit)}id={"button-edit-" + String(currentTask.id)}>Edit</Button>
+                        <>
+                            <div className={"flex justify-between mt-8"}>
+                                <Button className={"bg-red-500"} onClick={handleDelete} type="button">DELETE!</Button>
+
+                                <Button onClick={() => setEdit(!edit)}
+                                        id={"button-edit-" + String(currentTask.id)}>Edit</Button>
+
+                                <Link to={String(currentTask.id)}>
+                                    <Button type="button">View</Button>
+                                </Link>
+                            </div>
+                        </>
                     )
                     }
-                    <Button onClick={handleDelete} type="button">DELETE!</Button>
-
-                    <Link to={String(currentTask.id)}>
-                        <Button type="button">View</Button>
-                    </Link>
 
 
                 </CardContent>
