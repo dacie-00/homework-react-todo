@@ -1,15 +1,12 @@
 import {TodoItem} from "@/components/todoItemList/TodoItem.js";
 import {useEffect, useState} from "react";
-import {Navbar} from "@/components/navbar/index.js";
 import {TodoItemList} from "@/components/todoItemList/TodoItemList.js";
+import {useParams} from "react-router-dom";
 
-type TasksIndexProps = {
-    toggleTaskCompleted: (task: TodoItem, state: boolean) => void,
-}
-
-export default function TasksIndex({toggleTaskCompleted}: TasksIndexProps) {
+export default function TasksIndex() {
+    let { id } = useParams();
     async function getData() {
-        const url = "http://localhost:3004/tasks";
+        const url = "http://localhost:3004/tasks?id=" + id;
 
         const response = await fetch(url);
 
@@ -29,7 +26,7 @@ export default function TasksIndex({toggleTaskCompleted}: TasksIndexProps) {
     return (
         <>
             <div className={"m-auto w-1/2"}>
-                {todoItems && <TodoItemList items={todoItems} toggleTaskCompleted={toggleTaskCompleted}/>}
+                {todoItems && <TodoItemList items={todoItems}/>}
             </div>
         </>
     )
