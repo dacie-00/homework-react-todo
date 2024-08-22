@@ -1,5 +1,5 @@
 import {Task} from "./Task.tsx";
-import {deleteTask, getTasks, toggleTaskCompleted} from "@/api.tsx";
+import {deleteTask, updateTask, getTasks, toggleTaskCompleted} from "@/api.tsx";
 import {useEffect, useState} from "react";
 
 export function TaskList() {
@@ -8,6 +8,10 @@ export function TaskList() {
     const handleDelete = (taskToDelete: Task) => {
         deleteTask(taskToDelete)
         setTasks(tasks.filter(task => task.id !== taskToDelete.id));
+    }
+
+    const handleUpdate = (taskToUpdate: Task) => {
+        updateTask(taskToUpdate)
     }
 
     useEffect(() => {
@@ -19,7 +23,7 @@ export function TaskList() {
     return (
         <>
             {tasks && tasks.map((task, index) => (
-                <Task key={index} task={task} onCheck={toggleTaskCompleted} onDelete={handleDelete}/>
+                <Task key={index} task={task} onCheck={toggleTaskCompleted} onUpdate={handleUpdate} onDelete={handleDelete}/>
             ))}
         </>
     )

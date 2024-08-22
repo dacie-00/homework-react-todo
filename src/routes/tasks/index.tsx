@@ -1,5 +1,3 @@
-import {Task} from "@/components/taskList/Task.tsx";
-import {useEffect, useState} from "react";
 import {TaskList} from "@/components/taskList/TaskList.tsx";
 
 export default function TasksIndex() {

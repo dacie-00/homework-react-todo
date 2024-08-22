@@ -10,6 +10,16 @@ export const getTasks = async () => {
     return json;
 }
 
+export const updateTask = (task: Task) => {
+    fetch('http://localhost:3004/tasks/' + task.id, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(task),
+    })
+}
+
 export const toggleTaskCompleted = (task: Task, state: boolean) => {
     let completed_at = 0;
     if (state) {
