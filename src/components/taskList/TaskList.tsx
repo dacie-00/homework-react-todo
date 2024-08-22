@@ -1,5 +1,5 @@
 import {Task} from "./Task.tsx";
-import {deleteTask, updateTask, getTasks, toggleTaskCompleted, addTask} from "@/api.tsx";
+import {updateTask, getTasks, toggleTaskCompleted, addTask, deleteTask} from "@/api.tsx";
 import {useEffect, useState} from "react";
 import {Button} from "@/components/ui/button.tsx";
 
@@ -7,6 +7,7 @@ export function TaskList() {
     const [tasks, setTasks] = useState([])<Task[]>
 
     const handleDelete = (taskToDelete: Task) => {
+        deleteTask(taskToDelete);
         setTasks(tasks.filter((task) => task.id !== taskToDelete.id));
     }
 
@@ -35,7 +36,7 @@ export function TaskList() {
             {tasks && tasks.map((task) => (
                 <Task key={task.id} task={task} onCheck={toggleTaskCompleted} onUpdate={handleUpdate} onDelete={handleDelete}/>
             ))}
-            <Button onClick={handleAdd}>Add new task</Button>
+            <Button className={"m-auto"} onClick={handleAdd}>Add new task</Button>
         </>
     )
 
