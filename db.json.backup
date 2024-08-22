@@ -2,21 +2,21 @@
   "tasks": [
     {
       "id": "1",
-      "task": "Codelex front-end homework",
+      "title": "Codelex front-end homework",
       "comment": "",
       "due_date": "2024-08-22",
       "completed_at": 1724324015191
     },
     {
       "id": "2",
-      "task": "Get a job",
+      "title": "Get a job",
       "comment": "",
       "due_date": "2024-10-01",
       "completed_at": 0
     },
     {
       "id": "3",
-      "task": "Stop writing todo list items",
+      "title": "Stop writing todo list items",
       "comment": "",
       "due_date": "2024-08-19",
       "completed_at": 1724324021122

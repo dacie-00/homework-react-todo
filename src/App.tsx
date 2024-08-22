@@ -1,6 +1,6 @@
 import {useEffect, useState} from "react";
-import {TodoItemList} from "./components/todoItemList/TodoItemList.tsx";
-import {TodoItem} from "@/components/todoItemList/TodoItem.tsx";
+import {TaskList} from "@/components/taskList/TaskList.tsx";
+import {Task} from "@/components/taskList/Task.tsx";
 import {Navbar} from "@/components/navbar";
 
 
@@ -14,7 +14,7 @@ function App() {
         return json;
     }
 
-    const [todoItems, setTodoItems]: TodoItem = useState(null)
+    const [todoItems, setTodoItems]: Task = useState(null)
 
     useEffect(() => {
         getData().then((items) =>
@@ -27,7 +27,7 @@ function App() {
     <>
         <Navbar></Navbar>
         <div className={"m-auto w-1/2"}>
-            {todoItems && <TodoItemList items={todoItems}/>}
+            {todoItems && <TaskList items={todoItems}/>}
         </div>
     </>
     )

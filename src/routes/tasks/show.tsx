@@ -1,6 +1,6 @@
-import {TodoItem} from "@/components/todoItemList/TodoItem.js";
+import {Task} from "@/components/taskList/Task.tsx";
 import {useEffect, useState} from "react";
-import {TodoItemList} from "@/components/todoItemList/TodoItemList.js";
+import {TaskList} from "@/components/taskList/TaskList.tsx";
 import {useParams} from "react-router-dom";
 
 export default function TasksIndex() {
@@ -14,7 +14,7 @@ export default function TasksIndex() {
         return json;
     }
 
-    const [todoItems, setTodoItems]: TodoItem = useState(null)
+    const [todoItems, setTodoItems]: Task = useState(null)
 
     useEffect(() => {
         getData().then((items) =>
@@ -26,7 +26,7 @@ export default function TasksIndex() {
     return (
         <>
             <div className={"m-auto w-1/2"}>
-                {todoItems && <TodoItemList items={todoItems}/>}
+                {todoItems && <TaskList items={todoItems}/>}
             </div>
         </>
     )

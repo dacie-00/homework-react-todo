@@ -6,31 +6,6 @@ import Root from './routes/root.tsx'
 import ErrorPage from './error-page.tsx'
 import TasksIndex from './routes/tasks/index.tsx'
 import TasksShow from './routes/tasks/show.tsx'
-import {TodoItem} from "@/components/todoItemList/TodoItem.tsx";
-
-const toggleTaskCompleted = (task: TodoItem, state: boolean) => {
-    let completed_at = 0;
-    if (state) {
-        completed_at = Date.now()
-    }
-
-    fetch('http://localhost:3004/tasks/' + task.id, {
-        method: 'PATCH',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ "completed_at": completed_at }),
-    })
-}
-
-const deleteTask = (task: TodoItem) => {
-    fetch('http://localhost:3004/tasks/' + task.id, {
-        method: 'DELETE',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-    })
-}
 
 const router = createBrowserRouter([
     {
@@ -40,7 +15,7 @@ const router = createBrowserRouter([
         children: [
             {
                 path: "tasks",
-                element: <TasksIndex toggleTaskCompleted={toggleTaskCompleted}/>
+                element: <TasksIndex/>
             },
             {
                 path: "tasks/:id",
