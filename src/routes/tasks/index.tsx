@@ -1,10 +1,9 @@
+import {TodoItem} from "@/components/todoItemList/TodoItem.js";
 import {useEffect, useState} from "react";
-import {TodoItemList} from "./components/todoItemList/TodoItemList.tsx";
-import {TodoItem} from "@/components/todoItemList/TodoItem.tsx";
-import {Navbar} from "@/components/navbar";
+import {Navbar} from "@/components/navbar/index.js";
+import {TodoItemList} from "@/components/todoItemList/TodoItemList.js";
 
-
-function App() {
+export default function TasksIndex() {
     async function getData() {
         const url = "http://localhost:3004/tasks";
 
@@ -24,13 +23,10 @@ function App() {
 
 
     return (
-    <>
-        <Navbar></Navbar>
-        <div className={"m-auto w-1/2"}>
-            {todoItems && <TodoItemList items={todoItems}/>}
-        </div>
-    </>
+        <>
+            <div className={"m-auto w-1/2"}>
+                {todoItems && <TodoItemList items={todoItems}/>}
+            </div>
+        </>
     )
 }
-
-export default App
