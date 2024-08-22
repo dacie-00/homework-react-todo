@@ -13,7 +13,6 @@ import {Checkbox} from "@/components/ui/checkbox.tsx";
 import {Input} from "@/components/ui/input.tsx";
 import {Label} from "@/components/ui/label.tsx";
 import {Calendar} from "@/components/ui/calendar.tsx";
-import {DatePickerWithPresets} from "@/components/ui/date-picker.tsx";
 
 type TaskProps = {
     task: Task,

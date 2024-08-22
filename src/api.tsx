@@ -20,6 +20,18 @@ export const updateTask = (task: Task) => {
     })
 }
 
+export const addTask = async (task) => {
+    return fetch('http://localhost:3004/tasks/', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(task),
+    })
+    .then(response => response.json())
+    .then(task => task)
+}
+
 export const toggleTaskCompleted = (task: Task, state: boolean) => {
     let completed_at = 0;
     if (state) {
