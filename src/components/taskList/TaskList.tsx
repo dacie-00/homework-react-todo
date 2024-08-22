@@ -4,11 +4,10 @@ import {useEffect, useState} from "react";
 import {Button} from "@/components/ui/button.tsx";
 
 export function TaskList() {
-    const [tasks, setTasks]: Task = useState(null)
+    const [tasks, setTasks] = useState([])<Task[]>
 
     const handleDelete = (taskToDelete: Task) => {
-        deleteTask(taskToDelete);
-        setTasks(tasks.filter(task => task.id !== taskToDelete.id));
+        setTasks(tasks.filter((task) => task.id !== taskToDelete.id));
     }
 
     const handleUpdate = (taskToUpdate: Task) => {
@@ -33,8 +32,8 @@ export function TaskList() {
 
     return (
         <>
-            {tasks && tasks.map((task, index) => (
-                <Task key={index} task={task} onCheck={toggleTaskCompleted} onUpdate={handleUpdate} onDelete={handleDelete}/>
+            {tasks && tasks.map((task) => (
+                <Task key={task.id} task={task} onCheck={toggleTaskCompleted} onUpdate={handleUpdate} onDelete={handleDelete}/>
             ))}
             <Button onClick={handleAdd}>Add new task</Button>
         </>

@@ -115,7 +115,7 @@ export function Task({task, onCheck, onDelete, onUpdate}: TaskProps) {
                     ) : (
                         <>
                             <div className={"flex justify-between mt-8"}>
-                                <Button className={"bg-red-500"} onClick={handleDelete} type="button">DELETE!</Button>
+                                <Button className={"bg-red-500"} onClick={handleDelete} type="button">Delete</Button>
 
                                 <Button onClick={() => setEdit(!edit)}
                                         id={"button-edit-" + String(currentTask.id)}>Edit</Button>
