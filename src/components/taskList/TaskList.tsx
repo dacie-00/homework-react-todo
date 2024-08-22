@@ -5,16 +5,21 @@ import {useEffect, useState} from "react";
 export function TaskList() {
     const [tasks, setTasks]: Task = useState(null)
 
+    const handleDelete = (taskToDelete: Task) => {
+        deleteTask(taskToDelete)
+        setTasks(tasks.filter(task => task.id !== taskToDelete.id));
+    }
+
     useEffect(() => {
         getTasks().then((tasks) =>
             setTasks(tasks)
         )
-    }, [tasks])
+    }, [])
 
     return (
         <>
             {tasks && tasks.map((task, index) => (
-                <Task key={index} task={task} onCheck={toggleTaskCompleted} onDelete={deleteTask}/>
+                <Task key={index} task={task} onCheck={toggleTaskCompleted} onDelete={handleDelete}/>
             ))}
         </>
     )

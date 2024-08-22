@@ -1,4 +1,4 @@
-import {Fragment} from "react";
+import {Fragment, useState} from "react";
 import {
     Card,
     CardContent,
@@ -27,6 +27,8 @@ export type Task = {
 
 
 export function Task({task, onCheck, onDelete}: TaskProps) {
+    const [edit, setEdit] = useState<boolean>(false)
+
     const onCheckedChange = (state: boolean) => {
         onCheck(task, state);
     }
@@ -43,17 +45,26 @@ export function Task({task, onCheck, onDelete}: TaskProps) {
                     <CardDescription>{task.comment || 'No description'}</CardDescription>
                 </CardHeader>
                 <CardContent>
-                    <p>{task.due_date ? 'Due at ' + task.due_date : 'No due date'}</p>
-                    <p>{task.completed_at ? 'Completed at ' + task.completed_at : ''}</p>
-                    <Checkbox defaultChecked={task.completed_at > 0} onCheckedChange={onCheckedChange} id={"checkbox-" + String(task.id)}></Checkbox>
-                    <label htmlFor={"checkbox-" + String(task.id)}>
-                        Completed
-                    </label>
-                    <Button onClick={handleDelete} type="button">DELETE!</Button>
+                    {!edit ? (
+                        <>
+                            <p>{task.due_date ? 'Due at ' + task.due_date : 'No due date'}</p>
+                            <p>{task.completed_at ? 'Completed at ' + task.completed_at : ''}</p>
+                            <Checkbox defaultChecked={task.completed_at > 0} onCheckedChange={onCheckedChange} id={"checkbox-" + String(task.id)}></Checkbox>
+                            <label htmlFor={"checkbox-" + String(task.id)}>
+                                Completed
+                            </label>
+                            <Button onClick={handleDelete} type="button">DELETE!</Button>
 
-                    <Link to={String(task.id)}>
-                        <Button type="button">View</Button>
-                    </Link>
+                            <Link to={String(task.id)}>
+                                <Button type="button">View</Button>
+                            </Link>
+                        </>
+                        ) : (
+                        <>
+                            <p>editing</p>
+                        </>
+                    )
+                    }
                 </CardContent>
             </Card>
         </Fragment>
