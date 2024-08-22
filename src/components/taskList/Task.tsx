@@ -37,6 +37,12 @@ export function Task({task, onCheck, onDelete, onUpdate}: TaskProps) {
 
     const onCheckedChange = (state: boolean) => {
         onCheck(currentTask, state);
+        let completed_at = 0;
+        if (state) {
+            completed_at = Date.now()
+        }
+
+        setCurrentTask({...currentTask, 'completed_at': completed_at})
     }
 
     const handleDelete = () => {
@@ -69,7 +75,9 @@ export function Task({task, onCheck, onDelete, onUpdate}: TaskProps) {
                 <CardHeader>
                     <CardTitle>
                         <div className={"flex justify-between"}>
-                            {currentTask.title}
+                            <span className={currentTask.completed_at > 0 ? "line-through" : ''}>
+                                {currentTask.title}
+                            </span>
                             <div className={"text-sm font-light text-right"}>
                                 <p>{currentTask.due_date ? 'Due at ' + currentTask.due_date : 'No due date'}</p>
                                 <p>{currentTask.completed_at ? 'Completed at ' + new Date(currentTask.completed_at).toDateString() : ''}</p>
