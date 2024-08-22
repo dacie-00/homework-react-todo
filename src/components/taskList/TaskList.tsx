@@ -36,7 +36,9 @@ export function TaskList() {
             {tasks && tasks.map((task) => (
                 <Task key={task.id} task={task} onCheck={toggleTaskCompleted} onUpdate={handleUpdate} onDelete={handleDelete}/>
             ))}
-            <Button className={"m-auto"} onClick={handleAdd}>Add new task</Button>
+            <div className={"flex flex-col items-center mt-4"}>
+                <Button onClick={handleAdd}>Add new task</Button>
+            </div>
         </>
     )
 
