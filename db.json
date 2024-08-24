@@ -2,9 +2,9 @@
   "tasks": [
     {
       "id": "1965",
-      "title": "Finish Codelex homework",
+      "title": "Finish Codelex",
       "comment": "lol",
-      "due_date": "Thu Aug 22 2024",
+      "due_date": "Wed Oct 09 2024",
       "completed_at": ""
     },
     {
@@ -12,7 +12,7 @@
       "title": "Sleep for 8 hours",
       "comment": "",
       "due_date": "Wed Aug 21 2024",
-      "completed_at": 1724339017275
+      "completed_at": 0
     },
     {
       "id": "20d1",

@@ -128,9 +128,9 @@ export function Task({task, onCheck, onDelete, onUpdate}: TaskProps) {
                                 <Button onClick={() => setEdit(!edit)}
                                         id={"button-edit-" + String(currentTask.id)}>Edit</Button>
 
-                                <Link to={String(currentTask.id)}>
-                                    <Button type="button">View</Button>
-                                </Link>
+                                {/*<Link to={String(currentTask.id)}>*/}
+                                {/*    <Button type="button">View</Button>*/}
+                                {/*</Link>*/}
                             </div>
                         </>
                     )

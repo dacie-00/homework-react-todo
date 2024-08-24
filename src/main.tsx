@@ -1,32 +1,28 @@
-import * as React from "react";
-import * as ReactDOM from "react-dom/client";
 import './globals.css'
-import {createBrowserRouter, RouterProvider} from "react-router-dom";
-import Root from './routes/root.tsx'
-import ErrorPage from './error-page.tsx'
-import TasksIndex from './routes/tasks/index.tsx'
-import TasksShow from './routes/tasks/show.tsx'
+import React, { StrictMode } from 'react'
+import ReactDOM from 'react-dom/client'
+import { RouterProvider, createRouter } from '@tanstack/react-router'
 
-const router = createBrowserRouter([
-    {
-        path: "/",
-        element: <Root />,
-        errorElement: <ErrorPage />,
-        children: [
-            {
-                path: "tasks",
-                element: <TasksIndex/>
-            },
-            {
-                path: "tasks/:id",
-                element: <TasksShow/>
-            },
-        ]
-    },
-]);
+// Import the generated route tree
+import { routeTree } from './routeTree.gen'
 
-ReactDOM.createRoot(document.getElementById("root")).render(
-    <React.StrictMode>
-        <RouterProvider router={router} />
-    </React.StrictMode>
-);
+// Create a new router instance
+const router = createRouter({ routeTree })
+
+// Register the router instance for type safety
+declare module '@tanstack/react-router' {
+    interface Register {
+        router: typeof router
+    }
+}
+
+// Render the app
+const rootElement = document.getElementById('root')!
+if (!rootElement.innerHTML) {
+    const root = ReactDOM.createRoot(rootElement)
+    root.render(
+        <StrictMode>
+            <RouterProvider router={router} />
+        </StrictMode>,
+    )
+}

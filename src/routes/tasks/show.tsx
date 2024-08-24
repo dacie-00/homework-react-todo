@@ -2,9 +2,14 @@ import {Task} from "@/components/taskList/Task.tsx";
 import {useEffect, useState} from "react";
 import {TaskList} from "@/components/taskList/TaskList.tsx";
 import {useParams} from "react-router-dom";
+import {createFileRoute} from "@tanstack/react-router";
+
+export const Route = createFileRoute('/tasks/show')({
+    component: TasksIndex,
+})
 
 export default function TasksIndex() {
-    let { id } = useParams();
+    const { id } = useParams();
     async function getData() {
         const url = "http://localhost:3004/tasks?id=" + id;
 
