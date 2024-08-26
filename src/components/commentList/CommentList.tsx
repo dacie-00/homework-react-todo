@@ -12,6 +12,7 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
 import {Input} from "@/components/ui/input.tsx";
+import {CommentForm, CommentFormFields} from "@/components/commentList/CommentForm.tsx";
 
 type CommentListProps = {
     task: Task,
@@ -35,10 +36,10 @@ export function CommentList({task}: CommentListProps) {
             })
         }
     });
-    const handleAdd = (author, content) => {
+    const handleAdd = (fields: CommentFormFields) => {
         const comment = {
-            'author': author,
-            'content': content,
+            'author': fields.author,
+            'content': fields.content,
             'task_id': task.id,
         }
         addMutation.mutate(comment);
@@ -63,39 +64,6 @@ export function CommentList({task}: CommentListProps) {
         queryClient.invalidateQueries({queryKey: ['comments']})
     }, [])
 
-    const FormSchema = z.object({
-        author: z
-            .string()
-            .min(4, {
-                message: "author name must be at least 4 characters.",
-            })
-            .max(30, {
-                message: "author name must not be longer than 30 characters.",
-            }),
-        content: z
-            .string()
-            .min(10, {
-                message: "comment must be at least 10 characters.",
-            })
-            .max(200, {
-                message: "comment must not be longer than 200 characters.",
-            }),
-    })
-    const form = useForm<z.infer<typeof FormSchema>>({
-        resolver: zodResolver(FormSchema),
-    })
-    function onSubmit(data: z.infer<typeof FormSchema>) {
-        handleAdd(data.author, data.content);
-        toast({
-            title: "You submitted the following values:",
-            description: (
-                <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
-          <code className="text-white">{JSON.stringify(data, null, 2)}</code>
-        </pre>
-            ),
-        })
-    }
-
     return (
         <>
             <div className={"space-y-3 mb-8"}>
@@ -103,44 +71,8 @@ export function CommentList({task}: CommentListProps) {
                     <Comment key={comment.id} comment={comment} onDelete={handleDelete}/>
                 ))}
             </div>
-            <Form {...form}>
-                <form onSubmit={form.handleSubmit(onSubmit)} className="w-2/3 space-y-6">
-                    <FormField
-                        control={form.control}
-                        name="author"
-                        render={({field}) => (
-                            <FormItem>
-                                <FormLabel>Author</FormLabel>
-                                <FormControl>
-                                    <Input
-                                        className="resize-none"
-                                        {...field}
-                                    />
-                                </FormControl>
-                                <FormMessage/>
-                            </FormItem>
-                        )}
-                    />
-                    <FormField
-                        control={form.control}
-                        name="content"
-                        render={({field}) => (
-                            <FormItem>
-                                <FormLabel>Comment</FormLabel>
-                                <FormControl>
-                                    <Textarea
-                                        placeholder="Write something nice to the TODO item author"
-                                        className="resize-none"
-                                        {...field}
-                                    />
-                                </FormControl>
-                                <FormMessage/>
-                            </FormItem>
-                        )}
-                    />
-                    <Button type="submit">Send comment</Button>
-                </form>
-            </Form>
+
+            <CommentForm addComment={handleAdd}></CommentForm>
 
             <Toaster></Toaster>
         </>
