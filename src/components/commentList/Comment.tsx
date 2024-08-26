@@ -3,6 +3,7 @@ import {
     CardContent,
     CardTitle,
 } from "@/components/ui/card"
+import {Button} from "@/components/ui/button.tsx";
 
 type Comment = {
     id: string
@@ -16,11 +17,17 @@ type CommentProps = {
 }
 
 export function Comment({comment, onDelete}: CommentProps) {
+
+    const handleDelete = () => {
+        onDelete(comment)
+    }
+
     return (
         <>
             <Card className={"p-4"}>
                 <CardTitle>{comment.author}</CardTitle>
                 <CardContent>{comment.content}</CardContent>
+                <Button className={"bg-red-500"} onClick={handleDelete} type="button">Delete</Button>
             </Card>
         </>
     )
