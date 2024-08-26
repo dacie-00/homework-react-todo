@@ -18,7 +18,7 @@ type CommentProps = {
 export function Comment({comment, onDelete}: CommentProps) {
     return (
         <>
-            <Card>
+            <Card className={"p-4"}>
                 <CardTitle>{comment.author}</CardTitle>
                 <CardContent>{comment.content}</CardContent>
             </Card>

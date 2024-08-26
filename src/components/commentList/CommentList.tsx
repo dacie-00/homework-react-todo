@@ -86,7 +86,6 @@ export function CommentList({task}: CommentListProps) {
     })
     function onSubmit(data: z.infer<typeof FormSchema>) {
         handleAdd(data.author, data.content);
-        console.log("foo");
         toast({
             title: "You submitted the following values:",
             description: (
@@ -99,9 +98,11 @@ export function CommentList({task}: CommentListProps) {
 
     return (
         <>
-            {query.data?.map((comment) => (
-                <Comment key={comment.id} comment={comment} onDelete={handleDelete}/>
-            ))}
+            <div className={"space-y-3 mb-8"}>
+                {query.data?.map((comment) => (
+                    <Comment key={comment.id} comment={comment} onDelete={handleDelete}/>
+                ))}
+            </div>
             <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)} className="w-2/3 space-y-6">
                     <FormField

@@ -73,7 +73,7 @@ export function Task({task, onCheck, onDelete, onUpdate}: TaskProps) {
     const id = String(currentTask.id)
 
     return (
-        <Fragment>
+        <div className={"max-w-5xl mx-auto"}>
             <Card>
                 <CardHeader>
                     <CardTitle>
@@ -141,8 +141,10 @@ export function Task({task, onCheck, onDelete, onUpdate}: TaskProps) {
                     <p>{currentTask.comment_count} {currentTask.comment_count == 1 ? 'comment' : 'comments'}</p>
                 </CardFooter>
             </Card>
-            <CommentList task={currentTask}/>
-        </Fragment>
+            <div className={"p-5"}>
+                <CommentList  task={currentTask}/>
+            </div>
+        </div>
     )
 
 }
