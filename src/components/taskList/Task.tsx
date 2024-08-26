@@ -8,7 +8,6 @@ import {
     CardTitle,
 } from "@/components/ui/card"
 import {Button} from "@/components/ui/button.tsx";
-import {Link} from "react-router-dom";
 import {Checkbox} from "@/components/ui/checkbox.tsx";
 import {Input} from "@/components/ui/input.tsx";
 import {Label} from "@/components/ui/label.tsx";
@@ -27,6 +26,7 @@ export type Task = {
     comment: string,
     due_date: string,
     completed_at: number,
+    comment_count?: number,
 }
 
 
@@ -127,10 +127,6 @@ export function Task({task, onCheck, onDelete, onUpdate}: TaskProps) {
 
                                 <Button onClick={() => setEdit(!edit)}
                                         id={"button-edit-" + String(currentTask.id)}>Edit</Button>
-
-                                {/*<Link to={String(currentTask.id)}>*/}
-                                {/*    <Button type="button">View</Button>*/}
-                                {/*</Link>*/}
                             </div>
                         </>
                     )
@@ -138,6 +134,9 @@ export function Task({task, onCheck, onDelete, onUpdate}: TaskProps) {
 
 
                 </CardContent>
+                <CardFooter>
+                    <p>{currentTask.comment_count} {currentTask.comment_count == 1 ? 'comment' : 'comments'}</p>
+                </CardFooter>
             </Card>
         </Fragment>
     )
