@@ -14,6 +14,7 @@ import {Label} from "@/components/ui/label.tsx";
 import {Calendar} from "@/components/ui/calendar.tsx";
 import {Link} from "@tanstack/react-router";
 import {Route as TaskShowRoute} from "@/routes/tasks/$task_id.tsx";
+import {CommentList} from "@/components/commentList/CommentList.tsx";
 
 type TaskProps = {
     task: Task,
@@ -127,10 +128,6 @@ export function Task({task, onCheck, onDelete, onUpdate}: TaskProps) {
                             <div className={"flex justify-between mt-8"}>
                                 <Button className={"bg-red-500"} onClick={handleDelete} type="button">Delete</Button>
 
-                                <Link to={TaskShowRoute.to} params={{task_id: currentTask.id}}>
-                                    <Button type="button">View</Button>
-                                </Link>
-
                                 <Button onClick={() => setEdit(!edit)}
                                         id={"button-edit-" + String(currentTask.id)}>Edit</Button>
                             </div>
@@ -144,6 +141,7 @@ export function Task({task, onCheck, onDelete, onUpdate}: TaskProps) {
                     <p>{currentTask.comment_count} {currentTask.comment_count == 1 ? 'comment' : 'comments'}</p>
                 </CardFooter>
             </Card>
+            <CommentList task={currentTask}/>
         </Fragment>
     )
 

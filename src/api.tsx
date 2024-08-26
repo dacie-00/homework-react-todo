@@ -19,6 +19,12 @@ export const getTasks = async () => {
     return await response.json();
 }
 
+export const getTask = async (id: string) => {
+    const response = await fetch("http://localhost:3004/tasks?id=" + id);
+
+    return await response.json();
+}
+
 export const updateTask = (task: Task) => {
     fetch('http://localhost:3004/tasks/' + task.id, {
         method: 'PUT',
@@ -57,6 +63,29 @@ export const deleteTask = async (task: Task) => {
 
 export const getComments = async (task: Task) => {
     const response = await fetch("http://localhost:3004/comments?task_id=" + task.id);
+
+    return await response.json();
+}
+
+export const addComment = async (comment) => {
+    return fetch('http://localhost:3004/comments/', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(comment),
+    })
+        .then(response => response.json())
+        .then(comment => comment)
+}
+
+export const deleteComment = async (comment: Comment) => {
+    const response = await fetch('http://localhost:3004/comments/' + comment.id, {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    });
 
     return await response.json();
 }

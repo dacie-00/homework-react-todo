@@ -34,7 +34,7 @@ export function TaskList() {
     const handleAdd = () => {
         const task = {
             'title': 'untitled',
-            'comment': '',
+            'description': '',
             'due_date': '',
             'completed_at': '',
         }

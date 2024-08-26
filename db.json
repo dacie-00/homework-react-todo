@@ -2,15 +2,16 @@
   "tasks": [
     {
       "id": "ff93",
-      "title": "Sleep for 8 hoursasdsadasddsa",
-      "comment": "asdsa",
+      "title": "Sleep for 8 hoursheh",
+      "description": "asdsa",
       "due_date": "Wed Aug 21 2024",
-      "completed_at": 1724664270425
+      "completed_at": 0,
+      "comment_count": 3
     },
     {
       "id": "20d1",
       "title": "Write more todo items",
-      "comment": "do some funny ones",
+      "description": "do some funny ones",
       "due_date": "Thu Aug 22 2024",
       "completed_at": ""
     }
@@ -18,17 +19,32 @@
   "comments": [
     {
       "id": "1",
-      "text": "wow, this sucks",
+      "author": "epicCat444",
+      "content": "wow, this sucks",
       "task_id": "ff93"
     },
     {
-      "id": "1",
-      "text": "this is really lame",
+      "id": "2",
+      "author": "standingTable",
+      "content": "this is really lame",
       "task_id": "ff93"
     },
     {
-      "id": "1",
-      "text": "Please delete this and don't ever make anything again",
+      "id": "3",
+      "author": "xXxGam0rxXx",
+      "content": "Please delete this and don't ever make anything again",
+      "task_id": "ff93"
+    },
+    {
+      "id": "3e89",
+      "author": "SuperGamer1337",
+      "content": "Why would you create this?",
+      "task_id": "ff93"
+    },
+    {
+      "id": "d02d",
+      "author": "SuperGamer1337",
+      "content": "Why would you create this?",
       "task_id": "ff93"
     }
   ]
