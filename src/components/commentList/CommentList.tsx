@@ -1,17 +1,9 @@
 import {Comment} from "./Comment.tsx";
 import {addComment, deleteComment, getComments} from "@/api.tsx";
 import {useEffect} from "react";
-import {Button} from "@/components/ui/button.tsx";
 import {useMutation, useQuery, useQueryClient} from "@tanstack/react-query";
 import {toast} from "@/components/ui/use-toast.ts";
 import {Toaster} from "@/components/ui/toaster.tsx";
-import {Textarea} from "@/components/ui/textarea.tsx";
-
-import {Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage,} from "@/components/ui/form"
-import { zodResolver } from "@hookform/resolvers/zod"
-import { useForm } from "react-hook-form"
-import { z } from "zod"
-import {Input} from "@/components/ui/input.tsx";
 import {CommentForm, CommentFormFields} from "@/components/commentList/CommentForm.tsx";
 
 type CommentListProps = {

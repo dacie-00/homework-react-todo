@@ -1,19 +1,10 @@
 import {ChangeEvent, Fragment, useState} from "react";
-import {
-    Card,
-    CardContent,
-    CardDescription,
-    CardFooter,
-    CardHeader,
-    CardTitle,
-} from "@/components/ui/card"
+import {Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle,} from "@/components/ui/card"
 import {Button} from "@/components/ui/button.tsx";
 import {Checkbox} from "@/components/ui/checkbox.tsx";
 import {Input} from "@/components/ui/input.tsx";
 import {Label} from "@/components/ui/label.tsx";
 import {Calendar} from "@/components/ui/calendar.tsx";
-import {Link} from "@tanstack/react-router";
-import {Route as TaskShowRoute} from "@/routes/tasks/$task_id.tsx";
 import {CommentList} from "@/components/commentList/CommentList.tsx";
 
 type TaskProps = {
@@ -113,7 +104,8 @@ export function Task({task, onCheck, onDelete, onUpdate}: TaskProps) {
                                 </div>
                                 <div className="grid w-full max-w-md items-center gap-1.5">
                                     <Label htmlFor={`due_date-${id}`}>Due date</Label>
-                                    <Calendar id={`due_date-${id}`} mode={"single"} selected={currentTask.due_date} name={'due_date'}
+                                    <Calendar id={`due_date-${id}`} mode={"single"} selected={currentTask.due_date}
+                                              name={'due_date'}
                                               onSelect={updateDueDate}/>
                                 </div>
                                 <div className={"flex justify-between"}>
@@ -142,7 +134,7 @@ export function Task({task, onCheck, onDelete, onUpdate}: TaskProps) {
                 </CardFooter>
             </Card>
             <div className={"p-5"}>
-                <CommentList  task={currentTask}/>
+                <CommentList task={currentTask}/>
             </div>
         </div>
     )

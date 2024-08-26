@@ -1,8 +1,4 @@
-import {
-    Card,
-    CardContent,
-    CardTitle,
-} from "@/components/ui/card"
+import {Card, CardContent, CardTitle,} from "@/components/ui/card"
 import {Button} from "@/components/ui/button.tsx";
 
 type Comment = {

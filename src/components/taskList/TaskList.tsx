@@ -1,5 +1,5 @@
 import {Task} from "./Task.tsx";
-import {updateTask, getTasks, toggleTaskCompleted, addTask, deleteTask, getComments} from "@/api.tsx";
+import {addTask, deleteTask, getComments, getTasks, toggleTaskCompleted, updateTask} from "@/api.tsx";
 import {useEffect} from "react";
 import {Button} from "@/components/ui/button.tsx";
 import {useMutation, useQuery, useQueryClient} from "@tanstack/react-query";
@@ -23,7 +23,7 @@ export function TaskList() {
     const addMutation = useMutation({
         mutationFn: addTask,
         onSuccess: () => {
-            queryClient.invalidateQueries({ queryKey: ['tasks']})
+            queryClient.invalidateQueries({queryKey: ['tasks']})
             toast({
                 title: 'Task added',
                 description: 'Your task has been added',
@@ -44,7 +44,7 @@ export function TaskList() {
     const deleteMutation = useMutation({
         mutationFn: deleteTask,
         onSuccess: () => {
-            queryClient.invalidateQueries({ queryKey: ['tasks']})
+            queryClient.invalidateQueries({queryKey: ['tasks']})
             toast({
                 title: 'Task deleted',
                 description: 'Your task has been deleted',
@@ -59,7 +59,7 @@ export function TaskList() {
     const updateMutation = useMutation({
         mutationFn: updateTask,
         onSuccess: () => {
-            queryClient.invalidateQueries({ queryKey: ['tasks']});
+            queryClient.invalidateQueries({queryKey: ['tasks']});
             toast({
                 title: 'Task updated',
                 description: 'Your task has been updated',
@@ -73,13 +73,14 @@ export function TaskList() {
 
 
     useEffect(() => {
-        queryClient.invalidateQueries({ queryKey: ['tasks']})
+        queryClient.invalidateQueries({queryKey: ['tasks']})
     }, [])
 
     return (
         <>
             {query.data?.map((task) => (
-                <Task key={task.id} task={task} onCheck={toggleTaskCompleted} onUpdate={handleUpdate} onDelete={handleDelete}/>
+                <Task key={task.id} task={task} onCheck={toggleTaskCompleted} onUpdate={handleUpdate}
+                      onDelete={handleDelete}/>
             ))}
             <div className={"flex flex-col items-center mt-4"}>
                 <Button onClick={handleAdd}>Add new task</Button>

@@ -1,5 +1,4 @@
 import {createFileRoute} from "@tanstack/react-router";
-import {useParams} from "react-router-dom";
 import {deleteTask, getTask, toggleTaskCompleted, updateTask} from "@/api.tsx";
 import {Task} from "@/components/task/Task.tsx";
 

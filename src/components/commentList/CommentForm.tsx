@@ -1,7 +1,6 @@
 import {z} from "zod";
 import {useForm} from "react-hook-form";
 import {zodResolver} from "@hookform/resolvers/zod";
-import {toast} from "@/components/ui/use-toast.ts";
 import {Form, FormControl, FormField, FormItem, FormLabel, FormMessage} from "@/components/ui/form.tsx";
 import {Input} from "@/components/ui/input.tsx";
 import {Textarea} from "@/components/ui/textarea.tsx";
@@ -38,6 +37,7 @@ export function CommentForm({addComment}: CommentFormProps) {
     const form = useForm<z.infer<typeof FormSchema>>({
         resolver: zodResolver(FormSchema),
     })
+
     function onSubmit(data: z.infer<typeof FormSchema>) {
         addComment(data);
     }

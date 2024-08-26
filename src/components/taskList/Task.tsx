@@ -1,12 +1,5 @@
 import {ChangeEvent, Fragment, useState} from "react";
-import {
-    Card,
-    CardContent,
-    CardDescription,
-    CardFooter,
-    CardHeader,
-    CardTitle,
-} from "@/components/ui/card"
+import {Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle,} from "@/components/ui/card"
 import {Button} from "@/components/ui/button.tsx";
 import {Checkbox} from "@/components/ui/checkbox.tsx";
 import {Input} from "@/components/ui/input.tsx";
@@ -112,7 +105,8 @@ export function Task({task, onCheck, onDelete, onUpdate}: TaskProps) {
                                 </div>
                                 <div className="grid w-full max-w-md items-center gap-1.5">
                                     <Label htmlFor={`due_date-${id}`}>Due date</Label>
-                                    <Calendar id={`due_date-${id}`} mode={"single"} selected={currentTask.due_date} name={'due_date'}
+                                    <Calendar id={`due_date-${id}`} mode={"single"} selected={currentTask.due_date}
+                                              name={'due_date'}
                                               onSelect={updateDueDate}/>
                                 </div>
                                 <div className={"flex justify-between"}>

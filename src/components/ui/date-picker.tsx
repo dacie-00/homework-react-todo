@@ -1,24 +1,14 @@
 "use client"
 
 import * as React from "react"
-import { addDays, format } from "date-fns"
-import { Calendar as CalendarIcon } from "lucide-react"
+import {addDays, format} from "date-fns"
+import {Calendar as CalendarIcon} from "lucide-react"
 
-import { cn } from "@/lib/utils"
-import { Button } from "@/components/ui/button"
-import { Calendar } from "@/components/ui/calendar"
-import {
-    Popover,
-    PopoverContent,
-    PopoverTrigger,
-} from "@/components/ui/popover"
-import {
-    Select,
-    SelectContent,
-    SelectItem,
-    SelectTrigger,
-    SelectValue,
-} from "@/components/ui/select"
+import {cn} from "@/lib/utils"
+import {Button} from "@/components/ui/button"
+import {Calendar} from "@/components/ui/calendar"
+import {Popover, PopoverContent, PopoverTrigger,} from "@/components/ui/popover"
+import {Select, SelectContent, SelectItem, SelectTrigger, SelectValue,} from "@/components/ui/select"
 
 export function DatePickerWithPresets() {
     const [date, setDate] = React.useState<Date>()
@@ -33,7 +23,7 @@ export function DatePickerWithPresets() {
                         !date && "text-muted-foreground"
                     )}
                 >
-                    <CalendarIcon className="mr-2 h-4 w-4" />
+                    <CalendarIcon className="mr-2 h-4 w-4"/>
                     {date ? format(date, "PPP") : <span>Pick a date</span>}
                 </Button>
             </PopoverTrigger>
@@ -44,7 +34,7 @@ export function DatePickerWithPresets() {
                     }
                 >
                     <SelectTrigger>
-                        <SelectValue placeholder="Select" />
+                        <SelectValue placeholder="Select"/>
                     </SelectTrigger>
                     <SelectContent position="popper">
                         <SelectItem value="0">Today</SelectItem>
@@ -54,7 +44,7 @@ export function DatePickerWithPresets() {
                     </SelectContent>
                 </Select>
                 <div className="rounded-md border">
-                    <Calendar mode="single" selected={date} onSelect={setDate} />
+                    <Calendar mode="single" selected={date} onSelect={setDate}/>
                 </div>
             </PopoverContent>
         </Popover>
